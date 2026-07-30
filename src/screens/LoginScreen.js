@@ -21,6 +21,22 @@ export default function LoginScreen() {
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Alert.alert('Error', 'Ingresa un email válido');
+      return;
+    }
+
+    if (password.length < 8) {
+      Alert.alert('Error', 'La contraseña debe tener al menos 8 caracteres');
+      return;
+    }
+
+    if (isSignUp && !fullName.trim()) {
+      Alert.alert('Error', 'Por favor ingresa tu nombre completo');
+      return;
+    }
+
     setLoading(true);
 
     try {

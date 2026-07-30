@@ -9,7 +9,7 @@ const DARK = '#1a1a1a';
 const GRAY = '#2a2a2a';
 
 export default function HomeScreen() {
-  const { profile } = useAuth();
+  const { profile, user } = useAuth();
   const [appointments, setAppointments] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -25,6 +25,7 @@ export default function HomeScreen() {
         profiles!appointments_doctor_id_fkey(full_name),
         appointment_types(name, color)
       `)
+      .eq('patient_id', user?.id)
       .gte('scheduled_at', new Date().toISOString())
       .order('scheduled_at')
       .limit(5);

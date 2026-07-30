@@ -3,12 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity, Alert, Linking } from 'react-
 import { CameraView, Camera } from 'expo-camera';
 import { Ionicons } from '@expo/vector-icons';
 import { supabase } from '../lib/supabase';
+import { useAuth } from '../contexts/AuthContext';
 
 const GOLD = '#b89a5a';
 const DARK = '#1a1a1a';
 const GRAY = '#2a2a2a';
 
 export default function QRScanScreen() {
+  const { user } = useAuth();
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [processing, setProcessing] = useState(false);
@@ -43,6 +45,7 @@ export default function QRScanScreen() {
           appointment_types(name)
         `)
         .eq('qr_code', qrCode)
+        .eq('patient_id', user?.id)
         .single();
 
       if (fetchError || !appointment) {
@@ -80,7 +83,8 @@ export default function QRScanScreen() {
                   status: 'checked_in',
                   checked_in_at: new Date().toISOString(),
                 })
-                .eq('qr_code', qrCode);
+                .eq('qr_code', qrCode)
+                .eq('patient_id', user?.id);
 
               if (updateError) {
                 Alert.alert('Error', 'No se pudo completar el check-in.');
