@@ -10,6 +10,7 @@ import QRScanScreen from './src/screens/QRScanScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import PrescriptionsScreen from './src/screens/PrescriptionsScreen';
 import ReportsScreen from './src/screens/ReportsScreen';
+import ScheduleAppointmentScreen from './src/screens/ScheduleAppointmentScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import { View, ActivityIndicator } from 'react-native';
 
@@ -42,6 +43,7 @@ function AppTabs() {
           else if (route.name === 'Mis Citas') iconName = focused ? 'calendar' : 'calendar-outline';
           else if (route.name === 'Check-in') iconName = focused ? 'qr-code' : 'qr-code-outline';
           else if (route.name === 'Recetas') iconName = focused ? 'medical' : 'medical-outline';
+          else if (route.name === 'Agendar') iconName = focused ? 'add-circle' : 'add-circle-outline';
           else if (route.name === 'Informes') iconName = focused ? 'document-text' : 'document-text-outline';
           else if (route.name === 'Perfil') iconName = focused ? 'person' : 'person-outline';
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -52,6 +54,7 @@ function AppTabs() {
       <Tab.Screen name="Mis Citas" component={AppointmentsScreen} />
       <Tab.Screen name="Check-in" component={QRScanScreen} />
       <Tab.Screen name="Recetas" component={PrescriptionsScreen} />
+      <Tab.Screen name="Agendar" component={ScheduleAppointmentScreen} />
       <Tab.Screen name="Informes" component={ReportsScreen} />
       <Tab.Screen name="Perfil" component={ProfileScreen} />
     </Tab.Navigator>
