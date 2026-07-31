@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Bouclier Clinique",
-    "slug": "bouclier-patient-app",
+    "slug": "moods",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,20 +11,29 @@
       "resizeMode": "contain",
       "backgroundColor": "#1a1a1a"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.bouclier.patient"
+      "bundleIdentifier": "com.bouclier.patient",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1a1a1a"
       },
-      "package": "com.bouclier.patient"
+      "package": "com.bouclier.patient",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "versionCode": 3
     },
     "plugins": [
-      "expo-router",
       [
         "expo-camera",
         {
@@ -37,7 +46,14 @@
           "icon": "./assets/notification-icon.png",
           "color": "#b89a5a"
         }
-      ]
-    ]
+      ],
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "fec5a49d-6658-498a-a4e4-c3fccae2520b"
+      }
+    },
+    "owner": "moods-apps-team"
   }
 }
